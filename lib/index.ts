@@ -1,11 +1,14 @@
 import { Construct } from '@aws-cdk/core';
 import * as ssp from '@aws-quickstart/ssp-amazon-eks';
+import { SnykMonitorProvider } from './snyk-monitor-provider';
 
 export interface SnykMonitorAddOnProps extends ssp.HelmAddOnUserProps {
     /**
      * Snyk Integration ID from https://app.snyk.io/org/YOUR-ORGANIZATION-NAME/manage/integrations/kubernetes
      */
     integrationId?: string;
+
+    dockerCfgJson?: string;
 }
 
 export const defaultProps: ssp.HelmAddOnProps & SnykMonitorAddOnProps = {
@@ -28,7 +31,7 @@ export class SnykMonitorAddOn extends ssp.HelmAddOn {
     }
 
     deploy(clusterInfo: ssp.ClusterInfo): Promise<Construct> {
-        const chart = this.addHelmChart(clusterInfo, this.props.values);
-        return Promise.resolve(chart);
+        const snykMonitorProvider = new SnykMonitorProvider(this.options);
+        return Promise.resolve(snykMonitorProvider.deploy(clusterInfo));
     }
 }
