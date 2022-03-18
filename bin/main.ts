@@ -12,13 +12,10 @@ const stackProps = { env: { account, region } }
 
 // Snyk Properties
 const integrationId = '<integration ID>' // e.g. abcd1234-abcd-1234-abcd-1234abcd1234
-const dockerCfgJson = '{}' // for public registry
-// use {"credsStore":"ecr-login"} for private ECR
 
 EksBlueprint.builder()
     .addOns(new SnykMonitorAddOn({
-        integrationId: Buffer.from(integrationId).toString('base64'),
-        dockerCfgJson: Buffer.from(dockerCfgJson).toString('base64'),
+        integrationId: integrationId,
         values: {} // additional Helm chart values
     }))
     .build(app, stackID, stackProps);

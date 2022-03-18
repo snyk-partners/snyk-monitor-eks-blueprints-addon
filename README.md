@@ -70,8 +70,7 @@ const app = new cdk.App();
 
 const addOns: Array<ssp.ClusterAddOn> = [
     new SnykMonitorAddOn({
-        integrationId: Buffer.from(integrationId).toString('base64'),
-        dockerCfgJson: Buffer.from(dockerCfgJson).toString('base64'),
+        integrationId: '<integration ID>',
         values: {} // additional Helm chart values
     })
 ];

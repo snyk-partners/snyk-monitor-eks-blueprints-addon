@@ -23,8 +23,8 @@ export class SnykMonitorProvider {
         // manifest for namespace and secret
         const doc = readYamlDocument(__dirname + '/snyk-monitor-secret.yaml');
         const docArray = doc
-            .replace(/{{integrationId}}/g, this.props.integrationId || 'override')
-            .replace(/{{dockerCfgJson}}/g, this.props.dockerCfgJson || '{}');
+            .replace(/{{integrationId}}/g, Buffer.from(this.props.integrationId || "").toString('base64'))
+            .replace(/{{dockerCfgJson}}/g, Buffer.from('{"credsStore":"ecr-login"}').toString('base64'));
         const manifest = docArray.split("---").map(e => loadYaml(e));
         const snykMonitorManifest: KubernetesManifest = new KubernetesManifest(
             cluster.stack, 'snyk-monitor-secret',

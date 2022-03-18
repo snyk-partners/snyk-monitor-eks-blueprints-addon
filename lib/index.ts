@@ -7,8 +7,6 @@ export interface SnykMonitorAddOnProps extends ssp.HelmAddOnUserProps {
      * Snyk Integration ID from https://app.snyk.io/org/YOUR-ORGANIZATION-NAME/manage/integrations/kubernetes
      */
     integrationId?: string;
-
-    dockerCfgJson?: string;
 }
 
 export const defaultProps: ssp.HelmAddOnProps & SnykMonitorAddOnProps = {
