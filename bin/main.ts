@@ -5,14 +5,15 @@ import { SnykMonitorAddOn } from '../dist';
 const app = new App();
 
 // AWS Properties
-const account = '<account id>'
-const region = '<region>'
-const stackID = '<stack id>'
+const account = '<account id>' // e.g. 492635582501
+const region = '<region>' // e.g. us-east-1
+const stackID = '<stack id>' // e.g. ssp-amazon-eks-snyk
 const stackProps = { env: { account, region } }
 
 // Snyk Properties
-const integrationId = '<integration ID>'
-const dockerCfgJson = '{}' // for public registry, use {"credsStore":"ecr-login"} for ECR
+const integrationId = '<integration ID>' // e.g. abcd1234-abcd-1234-abcd-1234abcd1234
+const dockerCfgJson = '{}' // for public registry
+// use {"credsStore":"ecr-login"} for private ECR
 
 EksBlueprint.builder()
     .addOns(new SnykMonitorAddOn({
