@@ -39,13 +39,6 @@ function inputsAreValid(): boolean {
     if (!integrationId || integrationId.length == 0) {
         console.log("INTEGRATION_ID environment variable is empty or unset.");
         valid = false;
-    } else {
-        try {
-            atob(integrationId);
-        } catch (e) {
-            console.log("INTEGRATION_ID is not in base64 format.");
-            valid = false;
-        }
     }
     return valid;
 }
