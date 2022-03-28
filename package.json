@@ -7,7 +7,7 @@
     "eks-ssp-patterns": "dist/bin/main.js"
   },
   "scripts": {
-    "build": "make build",
+    "build": "rm -rf dist; node node_modules/.bin/tsc; node node_modules/.bin/copyfiles lib/**/*.yaml dist/ -u 1",
     "watch": "tsc -w",
     "test": "jest",
     "cdk": "cdk",
