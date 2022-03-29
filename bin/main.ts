@@ -1,6 +1,7 @@
 import { App } from '@aws-cdk/core';
 import { EksBlueprint } from '@aws-quickstart/ssp-amazon-eks';
 import { SnykMonitorAddOn } from '../dist';
+import { blueprintCd } from '../ci';
 
 const app = new App();
 
@@ -42,3 +43,5 @@ function inputsAreValid(): boolean {
     }
     return valid;
 }
+
+blueprintCd.build(app, 'ssp-addon-snyk-monitor-pipeline', stackProps);

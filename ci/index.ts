@@ -8,9 +8,7 @@ const region = process.env.REGION
 const stackProps = { env: { account, region } }
 const integrationId = process.env.INTEGRATION_ID
 
-const app = new cdk.App()
-
-const blueprint = ssp.EksBlueprint.builder()
+export const blueprintCd = ssp.EksBlueprint.builder()
     .account(account)
     .region(region)
     .addOns(new SnykMonitorAddOn({ integrationId: integrationId }))
@@ -25,6 +23,5 @@ ssp.CodePipelineStack.builder()
     })
     .stage({
         id: 'us-east-1-snyk-monitor-ssp-addon-test',
-        stackBuilder: blueprint.clone(region)
-    })
-    .build(app, 'ssp-addon-snyk-monitor-pipeline', stackProps)
+        stackBuilder: blueprintCd.clone(region)
+    });

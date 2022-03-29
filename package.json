@@ -4,10 +4,10 @@
   "main": "dist/lib/index.js",
   "types": "dist/lib/index.d.ts",
   "bin": {
-    "eks-ssp-patterns": "dist/bin/main.js"
+    "eks-ssp-patterns": "bin/main.ts"
   },
   "scripts": {
-    "build": "rm -rf dist; node node_modules/.bin/tsc; node node_modules/.bin/copyfiles lib/**/*.yaml dist/ -u 1; node node_modules/.bin/cdk list -a 'npx ts-node ci/index.ts'",
+    "build": "rm -rf dist; node node_modules/.bin/tsc; node node_modules/.bin/copyfiles lib/**/*.yaml dist/ -u 1",
     "watch": "tsc -w",
     "test": "jest",
     "cdk": "cdk",
