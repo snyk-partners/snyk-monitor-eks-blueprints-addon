@@ -1,11 +1,9 @@
 #!/usr/bin/env node
-import * as cdk from '@aws-cdk/core'
 import * as ssp from '@aws-quickstart/ssp-amazon-eks'
 import { SnykMonitorAddOn } from '../dist'
 
 const account = process.env.ACCOUNT
 const region = process.env.REGION
-const stackProps = { env: { account, region } }
 const integrationId = process.env.INTEGRATION_ID
 
 export const blueprintCd = ssp.EksBlueprint.builder()
