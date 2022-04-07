@@ -15,7 +15,7 @@ export const blueprintCd = ssp.EksBlueprint.builder()
 
 ssp.CodePipelineStack.builder()
     .name("ssp-addon-snyk-monitor-pipeline")
-    .owner("schottsfired")
+    .owner("snyk-partners")
     .repository({
         repoUrl: 'ssp-eks-extension',
         credentialsSecretName: 'ssp-pipeline-github-token',
