@@ -31,7 +31,7 @@ function inputsAreValid(): boolean {
         console.log("CDK_DEFAULT_ACCOUNT environment variable is empty or unset. Try 'aws configure'.");
         valid = false;
     }
-    if (!process.env.REGION) {
+    if (!process.env.CDK_DEFAULT_REGION) {
         console.log("CDK_DEFAULT_REGION environment variable is unset. Try 'aws configure'. Will default to 'us-east-1'.");
     }
     if (!process.env.STACK_ID) {
