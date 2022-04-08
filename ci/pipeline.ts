@@ -1,10 +1,9 @@
-#!/usr/bin/env node
-import * as ssp from '@aws-quickstart/ssp-amazon-eks'
-import { SnykMonitorAddOn } from '../dist'
+import * as ssp from '@aws-quickstart/ssp-amazon-eks';
+import { SnykMonitorAddOn } from '../dist';
 
-const account = process.env.CDK_DEFAULT_ACCOUNT!
-const region = process.env.CDK_DEFAULT_REGION!
-const integrationId = process.env.INTEGRATION_ID
+const account = process.env.CDK_DEFAULT_ACCOUNT!;
+const region = process.env.CDK_DEFAULT_REGION!;
+const integrationId = process.env.INTEGRATION_ID;
 
 const eksBuilder = ssp.EksBlueprint.builder()
     .account(account)

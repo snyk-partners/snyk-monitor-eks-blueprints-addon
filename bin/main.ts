@@ -1,7 +1,7 @@
 import { App } from '@aws-cdk/core';
 import { EksBlueprint } from '@aws-quickstart/ssp-amazon-eks';
 import { SnykMonitorAddOn } from '../dist';
-import { pipeline } from '../ci/pipeline'
+import { pipeline } from '../ci/pipeline';
 
 const app = new App();
 
@@ -14,17 +14,18 @@ if (!inputsAreValid()) {
     console.log("Inputs are invalid. Exiting...");
     process.exit(1);
 }
-const stackProps = { env: { account, region } }
+const stackProps = { env: { account, region } };
 
 // deploy EKS with the Snyk Monitor addon
 EksBlueprint.builder()
     .addOns(new SnykMonitorAddOn({
         integrationId: integrationId,
-        version: "1.86.0",
+        version: "1.87.2",
         values: {}
     }))
     .build(app, stackID, stackProps);
 
+// check each input value for correctness
 function inputsAreValid(): boolean {
     let valid = true;
     if (!account || account.length == 0) {
@@ -44,4 +45,5 @@ function inputsAreValid(): boolean {
     return valid;
 }
 
-pipeline.build(app, 'ssp-addon-snyk-monitor-pipeline', stackProps)
+// build an instance of the pipeline here because we have to pass the 'app'
+pipeline.build(app, 'ssp-addon-snyk-monitor-pipeline', stackProps);
