@@ -11,7 +11,7 @@ const eksBuilder = ssp.EksBlueprint.builder()
     .addOns(new SnykMonitorAddOn({ integrationId: integrationId }));
 
 export const pipeline = ssp.CodePipelineStack.builder()
-    .name("ssp-addon-snyk-monitor-pipeline")
+    .name("snyk-monitor-eks-blueprints-addon-pipeline")
     .owner("snyk-partners")
     .repository({
         repoUrl: 'ssp-eks-extension',
@@ -19,6 +19,6 @@ export const pipeline = ssp.CodePipelineStack.builder()
         targetRevision: 'develop'
     })
     .stage({
-        id: 'us-east-1-snyk-monitor-ssp-addon-test',
+        id: 'us-east-1-snyk-monitor-eks-blueprints-addon-test',
         stackBuilder: eksBuilder.clone(region)
     });

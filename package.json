@@ -1,5 +1,5 @@
 {
-  "name": "@snyk/ssp-addon-snyk-monitor",
+  "name": "@snyk-partners/snyk-monitor-eks-blueprints-addon",
   "version": "0.1.0",
   "main": "dist/lib/index.js",
   "types": "dist/lib/index.d.ts",
