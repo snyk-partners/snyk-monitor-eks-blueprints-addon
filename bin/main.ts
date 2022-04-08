@@ -1,5 +1,5 @@
-import { App } from '@aws-cdk/core';
-import { EksBlueprint } from '@aws-quickstart/ssp-amazon-eks';
+import { App } from 'aws-cdk-lib';
+import { EksBlueprint } from '@aws-quickstart/eks-blueprints';
 import { SnykMonitorAddOn } from '../dist';
 import { pipeline } from '../ci/pipeline';
 

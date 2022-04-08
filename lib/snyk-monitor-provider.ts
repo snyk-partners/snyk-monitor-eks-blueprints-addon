@@ -1,7 +1,7 @@
-import { ClusterInfo } from "@aws-quickstart/ssp-amazon-eks";
+import { ClusterInfo } from "@aws-quickstart/eks-blueprints";
 import { SnykMonitorAddOnProps } from ".";
-import { KubernetesManifest } from "@aws-cdk/aws-eks";
-import { loadYaml, readYamlDocument } from "@aws-quickstart/ssp-amazon-eks/dist/utils/yaml-utils";
+import { KubernetesManifest } from "aws-cdk-lib/aws-eks";
+import { loadYaml, readYamlDocument } from "@aws-quickstart/eks-blueprints/dist/utils/yaml-utils";
 
 export class SnykMonitorProvider {
 

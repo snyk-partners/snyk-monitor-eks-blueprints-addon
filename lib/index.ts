@@ -1,15 +1,15 @@
-import { Construct } from '@aws-cdk/core';
-import * as ssp from '@aws-quickstart/ssp-amazon-eks';
+import { Construct } from 'constructs';
+import * as blueprints from '@aws-quickstart/eks-blueprints';
 import { SnykMonitorProvider } from './snyk-monitor-provider';
 
-export interface SnykMonitorAddOnProps extends ssp.HelmAddOnUserProps {
+export interface SnykMonitorAddOnProps extends blueprints.HelmAddOnUserProps {
     /**
      * Snyk Integration ID from https://app.snyk.io/org/YOUR-ORGANIZATION-NAME/manage/integrations/kubernetes
      */
     integrationId?: string;
 }
 
-export const defaultProps: ssp.HelmAddOnProps & SnykMonitorAddOnProps = {
+export const defaultProps: blueprints.HelmAddOnProps & SnykMonitorAddOnProps = {
     chart: 'snyk-monitor',
     name: 'snyk-monitor',
     namespace: 'snyk-monitor',
@@ -19,7 +19,7 @@ export const defaultProps: ssp.HelmAddOnProps & SnykMonitorAddOnProps = {
     values: {}
 }
 
-export class SnykMonitorAddOn extends ssp.HelmAddOn {
+export class SnykMonitorAddOn extends blueprints.HelmAddOn {
 
     readonly options: SnykMonitorAddOnProps;
 
@@ -28,7 +28,7 @@ export class SnykMonitorAddOn extends ssp.HelmAddOn {
         this.options = this.props as SnykMonitorAddOnProps;
     }
 
-    deploy(clusterInfo: ssp.ClusterInfo): Promise<Construct> {
+    deploy(clusterInfo: blueprints.ClusterInfo): Promise<Construct> {
         const snykMonitorProvider = new SnykMonitorProvider(this.options);
         return Promise.resolve(snykMonitorProvider.deploy(clusterInfo));
     }

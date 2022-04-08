@@ -66,7 +66,7 @@ npm install @snyk-partners/snyk-monitor-eks-blueprints-addon
 
 2. Use it as follows:
 ```js
-import * as cdk from '@aws-cdk/core';
+import * as cdk from 'aws-cdk-lib/core';
 import * as ssp from '@aws-quickstart/ssp-amazon-eks';
 import { SnykMonitorAddOn } from '@snyk-partners/snyk-monitor-eks-blueprints-addon';
 
