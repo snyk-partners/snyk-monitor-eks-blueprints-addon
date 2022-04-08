@@ -2,16 +2,16 @@
 import * as ssp from '@aws-quickstart/ssp-amazon-eks'
 import { SnykMonitorAddOn } from '../dist'
 
-const account = process.env.ACCOUNT
-const region = process.env.REGION
+const account = process.env.CDK_DEFAULT_ACCOUNT!
+const region = process.env.CDK_DEFAULT_REGION!
 const integrationId = process.env.INTEGRATION_ID
 
-export const blueprintCd = ssp.EksBlueprint.builder()
+const eksBuilder = ssp.EksBlueprint.builder()
     .account(account)
     .region(region)
-    .addOns(new SnykMonitorAddOn({ integrationId: integrationId }))
+    .addOns(new SnykMonitorAddOn({ integrationId: integrationId }));
 
-ssp.CodePipelineStack.builder()
+export const pipeline = ssp.CodePipelineStack.builder()
     .name("ssp-addon-snyk-monitor-pipeline")
     .owner("snyk-partners")
     .repository({
@@ -21,5 +21,5 @@ ssp.CodePipelineStack.builder()
     })
     .stage({
         id: 'us-east-1-snyk-monitor-ssp-addon-test',
-        stackBuilder: blueprintCd.clone(region)
+        stackBuilder: eksBuilder.clone(region)
     });

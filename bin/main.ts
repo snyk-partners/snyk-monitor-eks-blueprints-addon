@@ -1,13 +1,13 @@
 import { App } from '@aws-cdk/core';
 import { EksBlueprint } from '@aws-quickstart/ssp-amazon-eks';
 import { SnykMonitorAddOn } from '../dist';
-import { blueprintCd } from '../ci';
+import { pipeline } from '../ci/pipeline'
 
 const app = new App();
 
 // load required parameters from the environment and validate them
-const account = process.env.ACCOUNT; // e.g. 492635582501
-const region = process.env.REGION || 'us-east-1';
+const account = process.env.CDK_DEFAULT_ACCOUNT!; // e.g. 492635582501
+const region = process.env.CDK_DEFAULT_REGION! || 'us-east-1';
 const stackID = process.env.STACK_ID || 'ssp-amazon-eks-snyk';
 const integrationId = process.env.INTEGRATION_ID; // e.g. abcd1234-abcd-1234-abcd-1234abcd1234
 if (!inputsAreValid()) {
@@ -28,11 +28,11 @@ EksBlueprint.builder()
 function inputsAreValid(): boolean {
     let valid = true;
     if (!account || account.length == 0) {
-        console.log("ACCOUNT environment variable is empty or unset.");
+        console.log("CDK_DEFAULT_ACCOUNT environment variable is empty or unset. Try 'aws configure'.");
         valid = false;
     }
     if (!process.env.REGION) {
-        console.log("REGION environment variable is unset. Will default to 'us-east-1'.");
+        console.log("CDK_DEFAULT_REGION environment variable is unset. Try 'aws configure'. Will default to 'us-east-1'.");
     }
     if (!process.env.STACK_ID) {
         console.log("STACK_ID environment variable is unset. Will default to 'ssp-amazon-eks-snyk'.");
@@ -44,4 +44,4 @@ function inputsAreValid(): boolean {
     return valid;
 }
 
-blueprintCd.build(app, 'ssp-addon-snyk-monitor-pipeline', stackProps);
+pipeline.build(app, 'ssp-addon-snyk-monitor-pipeline', stackProps)
