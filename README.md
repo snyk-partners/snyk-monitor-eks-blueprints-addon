@@ -1,4 +1,6 @@
 # Snyk Monitor add-on for Amazon EKS Blueprints (CDK)
+**_This project is currently in Beta._**
+
 This is an add-on to the [Amazon EKS Blueprints for CDK](https://github.com/aws-quickstart/cdk-eks-blueprints) project. The [CDK](https://aws.amazon.com/cdk/) code in this repository can be used to quickly deploy an [Amazon EKS](https://aws.amazon.com/eks/) cluster with the [Snyk Monitor](https://github.com/snyk/kubernetes-monitor) (part of the [Snyk Container](https://snyk.io/product/container-vulnerability-management/) product) installed out of the box. Additionally, EKS Blueprints users can add this module as a dependency in their project. This allows them to install the Snyk Monitor using CDK code and manage its configuration using GitOps.
 
 ## Snyk Monitor
