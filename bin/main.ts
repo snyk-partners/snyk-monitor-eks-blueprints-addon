@@ -1,7 +1,7 @@
 import { App } from 'aws-cdk-lib';
 import { EksBlueprint } from '@aws-quickstart/eks-blueprints';
 import { SnykMonitorAddOn } from '../dist';
-import config, { defaultStackId } from "../lib/config";
+import config, { defaultStackId } from '../lib/config';
 import { pipeline } from '../ci/pipeline';
 
 const app = new App();

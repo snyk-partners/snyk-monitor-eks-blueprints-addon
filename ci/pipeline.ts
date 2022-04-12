@@ -1,6 +1,6 @@
 import * as blueprints from '@aws-quickstart/eks-blueprints';
 import { SnykMonitorAddOn } from '../dist';
-import config from "../lib/config";
+import config from '../lib/config';
 
 const eksBuilder = blueprints.EksBlueprint.builder()
     .account(config.account)
