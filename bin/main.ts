@@ -7,7 +7,7 @@ const app = new App();
 
 // load required parameters from the environment and validate them
 const account = process.env.CDK_DEFAULT_ACCOUNT!; // e.g. 492635582501
-const region = process.env.CDK_DEFAULT_REGION! || 'us-east-1';
+const region = process.env.CDK_DEFAULT_REGION!;
 const stackID = process.env.STACK_ID || 'snyk-monitor-eks-blueprints-addon';
 const integrationId = process.env.INTEGRATION_ID; // e.g. abcd1234-abcd-1234-abcd-1234abcd1234
 if (!inputsAreValid()) {
@@ -33,7 +33,7 @@ function inputsAreValid(): boolean {
         valid = false;
     }
     if (!process.env.CDK_DEFAULT_REGION) {
-        console.log("CDK_DEFAULT_REGION environment variable is unset. Try 'aws configure'. Will default to 'us-east-1'.");
+        console.log("CDK_DEFAULT_REGION environment variable is unset. Try 'aws configure'.");
     }
     if (!process.env.STACK_ID) {
         console.log("STACK_ID environment variable is unset. Will default to 'snyk-monitor-eks-blueprints-addon'.");
