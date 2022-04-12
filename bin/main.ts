@@ -32,8 +32,8 @@ function inputsAreValid(): boolean {
         console.log("CDK_DEFAULT_ACCOUNT environment variable is empty or unset. Try 'aws configure'.");
         valid = false;
     }
-    if (!process.env.CDK_DEFAULT_REGION) {
-        console.log("CDK_DEFAULT_REGION environment variable is unset. Try 'aws configure'.");
+    if (!region || region.length == 0) {
+        console.log("CDK_DEFAULT_REGION environment variable is empty or unset. Try 'aws configure'.");
     }
     if (!process.env.STACK_ID) {
         console.log("STACK_ID environment variable is unset. Will default to 'snyk-monitor-eks-blueprints-addon'.");
