@@ -1,14 +1,11 @@
 import * as blueprints from '@aws-quickstart/eks-blueprints';
 import { SnykMonitorAddOn } from '../dist';
-
-const account = process.env.CDK_DEFAULT_ACCOUNT!;
-const region = process.env.CDK_DEFAULT_REGION!;
-const integrationId = process.env.INTEGRATION_ID;
+import config from "../lib/config";
 
 const eksBuilder = blueprints.EksBlueprint.builder()
-    .account(account)
-    .region(region)
-    .addOns(new SnykMonitorAddOn({ integrationId: integrationId }));
+    .account(config.account)
+    .region(config.region)
+    .addOns(new SnykMonitorAddOn({ integrationId: config.integrationId }));
 
 export const pipeline = blueprints.CodePipelineStack.builder()
     .name("snyk-monitor-eks-blueprints-addon-pipeline")
@@ -20,5 +17,5 @@ export const pipeline = blueprints.CodePipelineStack.builder()
     })
     .stage({
         id: 'us-east-1-snyk-monitor-eks-blueprints-addon-test',
-        stackBuilder: eksBuilder.clone(region)
+        stackBuilder: eksBuilder.clone(config.region)
     });
