@@ -2,43 +2,39 @@ import { App } from 'aws-cdk-lib';
 import { EksBlueprint } from '@aws-quickstart/eks-blueprints';
 import { SnykMonitorAddOn } from '../dist';
 import { pipeline } from '../ci/pipeline';
+import config, { defaultStackId } from '../lib/config';
 
 const app = new App();
 
-// load required parameters from the environment and validate them
-const account = process.env.CDK_DEFAULT_ACCOUNT!; // e.g. 492635582501
-const region = process.env.CDK_DEFAULT_REGION!;
-const stackID = process.env.STACK_ID || 'snyk-monitor-eks-blueprints-addon';
-const integrationId = process.env.INTEGRATION_ID; // e.g. abcd1234-abcd-1234-abcd-1234abcd1234
 if (!inputsAreValid()) {
     console.log("Inputs are invalid. Exiting...");
     process.exit(1);
 }
-const stackProps = { env: { account, region } };
+const stackProps = { env: { account: config.account, region: config.region } };
 
 // deploy EKS with the Snyk Monitor addon
 EksBlueprint.builder()
     .addOns(new SnykMonitorAddOn({
-        integrationId: integrationId,
+        integrationId: config.integrationId,
         version: "1.87.2",
         values: {}
     }))
-    .build(app, stackID, stackProps);
+    .build(app, config.stackId, stackProps);
 
 // check each input value for correctness
 function inputsAreValid(): boolean {
     let valid = true;
-    if (!account || account.length == 0) {
+    if (!config.account || config.account.length == 0) {
         console.log("CDK_DEFAULT_ACCOUNT environment variable is empty or unset. Try 'aws configure'.");
         valid = false;
     }
-    if (!region || region.length == 0) {
+    if (!config.region || config.region.length == 0) {
         console.log("CDK_DEFAULT_REGION environment variable is empty or unset. Try 'aws configure'.");
     }
-    if (!process.env.STACK_ID) {
-        console.log("STACK_ID environment variable is unset. Will default to 'snyk-monitor-eks-blueprints-addon'.");
+    if (!config.stackId || config.stackId === defaultStackId) {
+        console.log(`STACK_ID environment variable is unset or matches the default value. Using ${defaultStackId}.`);
     }
-    if (!integrationId || integrationId.length == 0) {
+    if (!config.integrationId || config.integrationId.length == 0) {
         console.log("INTEGRATION_ID environment variable is empty or unset.");
         valid = false;
     }
