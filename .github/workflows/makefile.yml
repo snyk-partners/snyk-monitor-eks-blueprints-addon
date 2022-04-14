@@ -28,4 +28,4 @@ jobs:
       run: make build
 
     - name: List CDK stacks
-      run: make list
+      run: CDK_DEFAULT_ACCOUNT=foo INTEGRATION_ID=bar make list
