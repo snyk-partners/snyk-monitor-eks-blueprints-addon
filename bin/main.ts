@@ -11,7 +11,7 @@ if (!inputsAreValid()) {
     process.exit(1);
 }
 
-const stackProps = { env: { config: config.account, region: config.region } };
+const stackProps = { env: { account: config.account, region: config.region } };
 
 // deploy EKS with the Snyk Monitor addon
 EksBlueprint.builder()
