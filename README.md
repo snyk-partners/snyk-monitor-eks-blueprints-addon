@@ -68,13 +68,13 @@ npm install @snyk-partners/snyk-monitor-eks-blueprints-addon
 
 2. Use it as follows:
 ```js
-import * as cdk from 'aws-cdk-lib/core';
-import * as ssp from '@aws-quickstart/ssp-amazon-eks';
+import * as cdk from 'aws-cdk-lib';
+import * as blueprints from '@aws-quickstart/eks-blueprints';
 import { SnykMonitorAddOn } from '@snyk-partners/snyk-monitor-eks-blueprints-addon';
 
 const app = new cdk.App();
 
-const addOns: Array<ssp.ClusterAddOn> = [
+const addOns: Array<blueprints.ClusterAddOn> = [
     new SnykMonitorAddOn({
         integrationId: '<integration ID>',
         values: {} // additional Helm chart values
@@ -85,7 +85,7 @@ const account = '<aws account id>'
 const region = '<aws region>'
 const props = { env: { account, region } }
 
-new ssp.EksBlueprint(app, { id: '<CFN stack ID>', addOns}, props)
+new blueprints.EksBlueprint(app, { id: '<CFN stack ID>', addOns}, props)
 ```
 
 ## Testing the Snyk Monitor
