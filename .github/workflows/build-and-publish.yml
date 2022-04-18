@@ -1,0 +1,38 @@
+on: [push, pull_request]
+name: Build, and maybe Publish
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [ '16', '17' ]
+    steps:
+    - uses: actions/checkout@v3
+    - name: Configure Node.js ${{ matrix.node }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node }}
+    - name: Install dependencies
+      run: npm install
+    - name: Lint
+      run: make lint
+    - name: Compile TypeScript
+      run: make build
+    - name: List CDK stacks
+      run: CDK_DEFAULT_ACCOUNT=foo INTEGRATION_ID=bar make list
+  #test: refer to ci/pipeline.ts
+  publish:
+    name: Publish
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && ( github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main' )
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build
+      run: npm install
+    - name: Publish
+      uses: mikeal/merge-release@master
+      env:
+        GITHUB_TOKEN: # TODO https://github.com/mikeal/merge-release/issues/45
+        NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
