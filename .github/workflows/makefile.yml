@@ -9,7 +9,7 @@ on:
     - develop
 
 jobs:
-  lint_and_build:
+  build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -26,3 +26,6 @@ jobs:
 
     - name: Compile TypeScript
       run: make build
+
+    - name: List CDK stacks
+      run: CDK_DEFAULT_ACCOUNT=foo INTEGRATION_ID=bar make list
