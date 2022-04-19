@@ -11,9 +11,9 @@ export const pipeline = blueprints.CodePipelineStack.builder()
     .name("snyk-monitor-eks-blueprints-addon-pipeline")
     .owner("snyk-partners")
     .repository({
-        repoUrl: 'ssp-eks-extension',
-        credentialsSecretName: 'ssp-pipeline-github-token',
-        targetRevision: 'develop'
+        repoUrl: 'snyk-monitor-eks-blueprints-addon',
+        credentialsSecretName: 'snyk-monitor-addon-github-token',
+        targetRevision: 'main'
     })
     .stage({
         id: 'snyk-monitor-addon-test',
