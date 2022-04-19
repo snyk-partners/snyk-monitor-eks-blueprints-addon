@@ -1,6 +1,6 @@
 {
   "name": "@snyk-partners/snyk-monitor-eks-blueprints-addon",
-  "version": "0.1.0",
+  "version": "0.0.0-semantic-release",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "bin": {
