@@ -34,5 +34,5 @@ jobs:
     - name: Publish
       uses: mikeal/merge-release@master
       env:
-        GITHUB_TOKEN: # TODO https://github.com/mikeal/merge-release/issues/45
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }} # gh secrets cannot start with GITHUB_
         NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
