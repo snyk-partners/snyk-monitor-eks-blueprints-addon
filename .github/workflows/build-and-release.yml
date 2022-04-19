@@ -36,10 +36,11 @@ jobs:
     - name: Install dependencies
       run: npm install --no-progress --no-package-lock --no-save
     - name: Install semantic-release extra plugins
-      run: npm install \
-        @semantic-release/changelog \
-        @semantic-release/git \
-        --no-progress --no-package-lock --no-save
+      run: |
+        npm install \
+          @semantic-release/changelog \
+          @semantic-release/git \
+          --no-progress --no-package-lock --no-save
     - name: Compile TypeScript
       run: make build
     - name: Release
