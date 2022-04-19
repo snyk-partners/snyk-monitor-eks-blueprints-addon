@@ -28,6 +28,6 @@
   "peerDependencies": {
     "@aws-quickstart/eks-blueprints": "latest",
     "source-map-support": "^0.5.16",
-    "aws-cdk": "2.17.0"
+    "aws-cdk": "2.20.0"
   }
 }

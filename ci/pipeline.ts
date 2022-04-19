@@ -16,6 +16,6 @@ export const pipeline = blueprints.CodePipelineStack.builder()
         targetRevision: 'develop'
     })
     .stage({
-        id: 'us-east-1-snyk-monitor-eks-blueprints-addon-test',
+        id: 'snyk-monitor-addon-test',
         stackBuilder: eksBuilder.clone(config.region)
     });
