@@ -88,6 +88,8 @@ const props = { env: { account, region } }
 new blueprints.EksBlueprint(app, { id: '<CFN stack ID>', addOns}, props)
 ```
 
+**Note**: the `integrationId` is not a password, but sensitive enough to treat with care. Do not share your `integrationId` with the public. Support for AWS Secrets Manager is planned for a future release.
+
 ## Testing the Snyk Monitor
 1. Check the Snyk Monitor logs to ensure that it's running and able to connect to your container registry:
 ```
