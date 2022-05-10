@@ -60,7 +60,13 @@ The CDK code in this repository can be used to deploy a new Amazon EKS cluster w
 
     **NOTE:** Refer to `<project>/bin/main.ts` for more details on environment variable usage.
 
-5. Run `cdk deploy snyk-monitor-eks-blueprints-addon` (or `cdk deploy $STACK_ID` if you changed the name) to deploy to AWS.
+6. Run `cdk deploy snyk-monitor-eks-blueprints-addon` (or `cdk deploy $STACK_ID` if you changed the name) to deploy to AWS.
+
+7. Connect to the EKS cluster by using the `aws eks` commands in the stack outputs:
+
+![Stack outputs](docs/images/connect.png)
+
+8. Congratulations! You deployed and connected to an EKS cluster running Snyk Monitor. Refer to the [Testing the Snyk Monitor](#testing-the-snyk-monitor) section for next steps.
 
 ### Existing Amazon EKS Blueprints Project
 1. Add this module as a dependency:
