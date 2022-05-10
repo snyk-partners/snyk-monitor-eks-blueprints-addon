@@ -56,9 +56,11 @@ The CDK code in this repository can be used to deploy a new Amazon EKS cluster w
 
 4. Run `export INTEGRATION_ID=abcd1234-abcd-1234-abcd-1234abcd1234` with your actual integration ID. To get the integration ID, log in to your Snyk account and navigate to https://app.snyk.io/org/YOUR-ORGANIZATION-NAME/manage/integrations/kubernetes.
 
+5. [Optional] Run `export STACK_ID=some-string-value` to change the name of the CloudFormation stack that will be deployed. The default value is `snyk-monitor-eks-blueprints-addon`.
+
     **NOTE:** Refer to `<project>/bin/main.ts` for more details on environment variable usage.
 
-5. Run `cdk deploy snyk-monitor-eks-blueprints-addon` to deploy to AWS.
+5. Run `cdk deploy snyk-monitor-eks-blueprints-addon` (or `cdk deploy $STACK_ID` if you changed the name) to deploy to AWS.
 
 ### Existing Amazon EKS Blueprints Project
 1. Add this module as a dependency:
