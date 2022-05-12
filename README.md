@@ -58,13 +58,15 @@ The CDK code in this repository can be used to deploy a new Amazon EKS cluster w
 
 5. [Optional] Run `export STACK_ID=some-string-value` to change the name of the CloudFormation stack that will be deployed. The default value is `snyk-monitor-eks-blueprints-addon`.
 
-    **NOTE:** Refer to `<project>/bin/main.ts` for more details on environment variable usage.
+* Refer to `<project>/bin/main.ts` for more details on environment variable usage.
 
 6. Run `cdk deploy snyk-monitor-eks-blueprints-addon` (or `cdk deploy $STACK_ID` if you changed the name) to deploy to AWS.
 
 7. Connect to the EKS cluster by using the `aws eks` commands in the stack outputs:
 
 ![Stack outputs](docs/images/connect.png)
+
+* These commands are also available on the **Outputs** tab of the stack in the AWS CloudFormation console.
 
 8. Congratulations! You deployed and connected to an EKS cluster running Snyk Monitor. Refer to the [Testing the Snyk Monitor](#testing-the-snyk-monitor) section for next steps.
 
