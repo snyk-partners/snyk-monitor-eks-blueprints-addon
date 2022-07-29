@@ -17,7 +17,7 @@ const stackProps = { env: { account: config.account, region: config.region } };
 EksBlueprint.builder()
     .addOns(new SnykMonitorAddOn({
         integrationId: config.integrationId,
-        version: "1.87.2",
+        version: "1.93.1",
         values: {}
     }))
     .build(app, config.stackId, stackProps);
