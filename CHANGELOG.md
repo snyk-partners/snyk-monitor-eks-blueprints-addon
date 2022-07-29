@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/snyk-partners/snyk-monitor-eks-blueprints-addon/compare/v1.1.0...v1.1.1) (2022-07-29)
+
+
+### Bug Fixes
+
+* use specific version of eks-blueprints, bump deps, bump snyk-monitor version, delete dist ([122ffb9](https://github.com/snyk-partners/snyk-monitor-eks-blueprints-addon/commit/122ffb92d7f00866600d4f0f6a2de6896931d7d7))
+
 # [1.1.0](https://github.com/snyk-partners/snyk-monitor-eks-blueprints-addon/compare/v1.0.0...v1.1.0) (2022-04-19)
 
 
